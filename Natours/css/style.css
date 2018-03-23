@@ -1,59 +1,158 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
 
 body {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.7;
-    color: #777;
-    padding: 30px;
-}
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+  padding: 30px; }
 
 .header {
-    height: 95vh;
-    background-image: linear-gradient( to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 131, 0.8)), url(../img/hero.jpg);
-    background-size: cover;
-    background-position: top;
-    position: relative;
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-}
-
-.logo-box {
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
+  .header__logo-box {
     position: absolute;
-    top: 40px;
-    left: 40px;
-}
-
-.logo {
-    height: 35px;
-}
-
-.text-box {
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 35px; }
+  .header__text-box {
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
+    text-align: center; }
 
 .heading-primary {
-    color: #fff;
-    text-transform: uppercase;
-}
-
-.heading-primary-main {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  /*For fixing animation shaking issue*/
+  margin-bottom: 60px; }
+  .heading-primary-main {
     display: block;
     font-size: 60px;
     font-weight: 400;
     letter-spacing: 35px;
-}
-
-.heading-primary-sub {
+    animation-name: moveInLeft;
+    /*The name of animation in keyframes*/
+    animation-duration: 1s;
+    /*Animation duration*/
+    animation-timing-function: ease-out;
+    /*The progress and speed of the animation*/
+    /*animation-delay: 3s; /*Delay 3s to start animation*/
+    /*animation-iteration-count: 3s; /*Start to play animation 3 times*/ }
+  .heading-primary-sub {
     display: block;
     font-size: 20px;
     font-weight: 400;
     letter-spacing: 15px;
-}
+    animation: moveInRight 1s ease-out; }
+
+@keyframes moveInLeft {
+  /*Before the animation starts*/
+  0% {
+    opacity: 0;
+    /*Starts with invisible*/
+    transform: translateX(-100px);
+    /*Starts with -100px on x axis*/ }
+  80% {
+    transform: translateX(10px);
+    /*Move more 20px when 80%*/ }
+  /*When the animation finished*/
+  100% {
+    opacity: 1;
+    /*Finishs with invisible*/
+    transform: translateX(0);
+    /*Finish with 0px on x axis*/ } }
+
+@keyframes moveInRight {
+  /*Before the animation starts*/
+  0% {
+    opacity: 0;
+    /*Starts with invisible*/
+    transform: translateX(100px);
+    /*Starts with 100px on x axis*/ }
+  80% {
+    transform: translateX(-10px);
+    /*Move more -10px when 80%*/ }
+  /*When the animation finished*/
+  100% {
+    opacity: 1;
+    /*Finishs with invisible*/
+    transform: translateX(0);
+    /*Finish with 0px on x axis*/ } }
+
+@keyframes moveInBottom {
+  /*Before the animation starts*/
+  0% {
+    opacity: 0;
+    /*Starts with invisible*/
+    transform: translateY(30px);
+    /*Starts with 100px on x axis*/ }
+  /*When the animation finished*/
+  100% {
+    opacity: 1;
+    /*Finishs with invisible*/
+    transform: translateY(0);
+    /*Finish with 0px on x axis*/ } }
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  /*All the transition properties are enabled to be animiated*/
+  transition: all .2s;
+  position: relative; }
+
+.btn:hover {
+  transform: translateY(-3px);
+  /*shadow effect when user's mouse hovers on the button*/
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+
+.btn:active {
+  transform: translateY(-1px);
+  /*shadow effect when user's mouse clicks on the button*/
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+
+.btn-white {
+  background-color: #fff;
+  color: #777; }
+
+/*Create another button in the same position behind for animation purpose*/
+.btn:after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s; }
+
+.btn-white:after {
+  background-color: #fff; }
+
+.btn-white:hover:after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0; }
+
+.btn-animated {
+  animation: moveInBottom .5s ease-in-out .75s;
+  /*Animation will not be applied the animation style to zero percent before the anmiation starts*/
+  animation-fill-mode: backwards; }
