@@ -1,0 +1,37 @@
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.7;
+    color: $color-grey-dark;
+    padding: 30px;
+}
+
+.heading-primary {
+    color: $color-white;
+    text-transform: uppercase;
+    backface-visibility: hidden;
+    /*For fixing animation shaking issue*/
+    margin-bottom: 60px;
+    &--main {
+        display: block;
+        font-size: 60px;
+        font-weight: 400;
+        letter-spacing: 35px;
+        animation-name: moveInLeft;
+        /*The name of animation in keyframes*/
+        animation-duration: 1s;
+        /*Animation duration*/
+        animation-timing-function: ease-out;
+        /*The progress and speed of the animation*/
+        /*animation-delay: 3s; /*Delay 3s to start animation*/
+        /*animation-iteration-count: 3s; /*Start to play animation 3 times*/
+    }
+    &--sub {
+        display: block;
+        font-size: 20px;
+        font-weight: 400;
+        letter-spacing: 15px;
+        animation: moveInRight 1s ease-out;
+    }
+}
