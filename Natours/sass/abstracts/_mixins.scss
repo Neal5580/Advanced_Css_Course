@@ -1,0 +1,8 @@
+/*clearfix is used to fix the height of row with float div issue*/
+@mixin clearfix{
+    &::after{
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
